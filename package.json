@@ -1,0 +1,34 @@
+{
+  "name": "svg-icon",
+  "version": "1.0.0",
+  "copyright": "Copyright 2014 - 2023 Ayogo Health Inc.",
+  "license": "MIT",
+  "homepage": "https://github.com/AyogoHealth/svg-icon#readme",
+  "author": "Ayogo Health Inc.",
+  "contributors": [
+    "Darryl Pogue <darryl@dpogue.ca>",
+    "Ian Suda <iansuda@gmail.com>"
+  ],
+  "description": "svg-icon web component",
+  "main": "svg-icon.js",
+  "type": "module",
+  "files": [
+    "svg-icon.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://git@github.com/AyogoHealth/svg-icon.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AyogoHealth/svg-icon/issues"
+  },
+  "devDependencies": {
+    "serve": "^14.2.1",
+    "svgstore-cli": "^2.0.1"
+  },
+  "scripts": {
+    "build-icons": "svgstore -o example-atlas.svg -p 'icon-' ./example-icons/*.svg",
+    "start": "serve",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
