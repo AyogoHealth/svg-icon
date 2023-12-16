@@ -1,0 +1,9 @@
+.DS_Store
+.#*
+*~
+*.swp
+npm-debug.log
+log
+node_modules
+pkg
+tmp

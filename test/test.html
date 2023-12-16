@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+  <head>
+    <title>svg-icon tests</title>
+    <script src="./testharness.js"></script>
+    <script src="./testharnessreport.js"></script>
+    <style>svg-icon { visibility: hidden; }</style>
+    <script src="../svg-icon.js" type="module"></script>
+  </head>
+  <body>
+    <div id="log"></div>
+
+    <svg-icon src="../example-atlas.svg" name="check" id="one"></svg-icon>
+    <svg-icon src="../example-atlas.svg?2" name="build" id="two" inline></svg-icon>
+    <svg-icon src="../example-atlas.svg?3" name="warning" id="three" inline="iframe"></svg-icon>
+
+    <script type="module">
+
+test(function() {
+  assert_true(!!window.customElements.get("svg-icon"));
+}, "Custom element should be registered");
+
+
+test(function() {
+  const SvgIconElement = window.customElements.get("svg-icon");
+  const el = document.getElementById("one");
+
+  assert_true(el instanceof SvgIconElement);
+}, "HTML Parser should upgrade in-page element");
+
+
+test(function() {
+  const SvgIconElement = window.customElements.get("svg-icon");
+  const el = document.createElement("svg-icon");
+
+  assert_true(el instanceof SvgIconElement);
+}, "HTML Parser should upgrade dynamically created element");
+
+
+test(function() {
+  const el = document.getElementById("one");
+  assert_equals(el.name, el.getAttribute("name"));
+
+  el.name = "logo";
+  assert_equals(el.name, el.getAttribute("name"));
+}, "svg-icon should expose name property");
+
+
+test(function() {
+  const el = document.getElementById("two");
+  assert_equals(el.name, el.getAttribute("name"));
+
+  el.setAttribute("name", "logo");
+  assert_equals(el.name, el.getAttribute("name"));
+}, "svg-icon should have name attribute");
+
+
+test(function() {
+  const el = document.getElementById("one");
+  assert_equals(el.src, el.getAttribute("src"));
+
+  el.src += "?5";
+  assert_equals(el.src, el.getAttribute("src"));
+}, "svg-icon should expose src property");
+
+
+test(function() {
+  const el = document.getElementById("one");
+  assert_equals(el.src, el.getAttribute("src"));
+
+  el.setAttribute("src", "../example-atlas.svg?6");
+  assert_equals(el.src, el.getAttribute("src"));
+}, "svg-icon should have src attribute");
+
+
+test(function() {
+  const el1 = document.getElementById("one");
+  const el2 = document.getElementById("two");
+
+  assert_false(el1.inline);
+  assert_true(el2.inline);
+
+  assert_throws_js(TypeError, () => {
+    el1.inline = true;
+  });
+}, "svg-icon should expose read-only inline property");
+
+    </script>
+  </body>
+</html>
