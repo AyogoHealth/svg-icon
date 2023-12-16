@@ -23,12 +23,15 @@
     "url": "https://github.com/AyogoHealth/svg-icon/issues"
   },
   "devDependencies": {
+    "kleur": "^4.1.5",
     "serve": "^14.2.1",
-    "svgstore-cli": "^2.0.1"
+    "serve-handler": "^6.1.5",
+    "svgstore-cli": "^2.0.1",
+    "webdriver": "^8.24.12"
   },
   "scripts": {
     "build-icons": "svgstore -o example-atlas.svg -p 'icon-' ./example-icons/*.svg",
     "start": "serve",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test/testrunner.js"
   }
 }
