@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1">
+  <script>
+    //<![CDATA[
+      if (window && window.parent && window.location.search.match(/postHack=/)) {
+        setTimeout(function() {
+          var filename = window.location.search.match(/postHack=([^&]+)/)[1];
+          var message = 'SVGICON:' + filename + ':' + ':' + (new XMLSerializer()).serializeToString(document);
+          window.parent.postMessage(message, '*');
+        }, 0);
+      }
+    //]]>
+  </script>
+</svg>

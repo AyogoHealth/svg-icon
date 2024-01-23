@@ -1,0 +1,35 @@
+name: PR Verification
+
+on:
+  pull_request:
+    branches: ["*"]
+    types: [synchronize, opened, reopened, ready_for_review]
+
+jobs:
+  test:
+    name: Test ${{ matrix.test.browser }}
+    runs-on: ${{ matrix.test.os }}
+    timeout-minutes: 5
+    strategy:
+      matrix:
+        test:
+          - { os: ubuntu-latest, browser: chrome }
+          - { os: ubuntu-latest, browser: firefox }
+          - { os: macos-latest, browser: safari }
+          - { os: windows-latest, browser: edge }
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Tests
+        run: npm test -- --browser=${{ matrix.test.browser }}
