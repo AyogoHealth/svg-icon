@@ -25,7 +25,7 @@
   "devDependencies": {
     "serve": "^14.2.1",
     "svgstore-cli": "^2.0.1",
-    "wpt-test": "^1.0.1"
+    "wpt-test": "^1.0.2"
   },
   "scripts": {
     "build-icons": "svgstore -o example-atlas.svg -p 'icon-' ./example-icons/*.svg",
