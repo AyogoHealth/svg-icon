@@ -23,7 +23,7 @@
     "url": "https://github.com/AyogoHealth/svg-icon/issues"
   },
   "devDependencies": {
-    "serve": "^14.2.5",
+    "serve": "^14.2.7",
     "svgstore-cli": "^2.0.1",
     "wpt-test": "^1.1.0"
   },
